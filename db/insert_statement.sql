@@ -1,0 +1,1 @@
+insert into users (username, email, phone, ssn) values ('Todd', 'todd@mentormountain', 2, '123-4567')
