@@ -1,0 +1,1 @@
+create table users (primary key id serial, username text, phone text, ssn text) 

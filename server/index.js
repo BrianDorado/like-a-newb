@@ -1,27 +1,30 @@
-const express = require('express'),
-      bodyParser = require('body-parser'),
-      session = require('express-session'),
+const bodyParser = require('body-parser'),
+      express = require('express'),
+      massive = require('massive'),
       app = express(),
-      port = 3000;
+      port = 4444;
 
 
-// ========== MIDDLEWARE ========== //
 
-// ===== TOP LEVEL MIDDLEWARE ===== //
+// HUGE!
+massive(process.env.DB_CONNECTION).then(db => {
+    app.set('db', db)
+})
 
 app.use(bodyParser.json());
 
-// === GET REQUESTS === //
+// get reqs 
 app.get('/data')
-
-// === PUT REQUESTS === //
+// put reqs
 app.put('/data')
 
-// === POST REQUESTS === //
+// post reqs
 app.post('/data')
 
-// === DELETE REQUESTS === //
-app.delete('data')
+// delete reqs 
+app.delete('/data')
+
+
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`)
