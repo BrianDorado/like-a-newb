@@ -1,24 +1,31 @@
 import axios from 'axios'
-import { userInfo } from 'os';
 
 const initialState = { 
-    userID: 1
-}
+    userData: {},
+    userID: null,
 
-export function getUser(){
+}
+const userData = 'User_Data'
+const user = 'user'
+
+// action creator
+export function createUser(){
+    let newUser = axios.post('/createUser', {username: userData.username, phone: userData.phone, ssn: userData.ssn })
+    .then(res => res.data)
+
     return {
-        type: userInfo,
-        payload: user
+        type: userData,
+        payload: newUser
     }
 }
 
-export function(state = initialState, action) {
+export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case value:
+        case userData + '_FULFILLED':
+            return Object.assign({}. state, {userData: action.payload})
             
-            break;
     
         default:
-            break;
+            return state
     }
 }
